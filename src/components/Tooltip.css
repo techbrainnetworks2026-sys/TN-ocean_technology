@@ -1,0 +1,33 @@
+.tooltip-bubble {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal-accent);
+  color: var(--bg-dark);
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  animation: tooltipFade 0.2s forwards;
+  pointer-events: none;
+  z-index: 5000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.tooltip-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--teal-accent) transparent transparent transparent;
+}
+
+@keyframes tooltipFade {
+  to { opacity: 1; bottom: 135%; }
+}
