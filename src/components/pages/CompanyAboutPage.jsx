@@ -23,34 +23,17 @@ const CompanyAboutPage = ({ onBack }) => {
   return (
     <div className="company-about-page" style={{ animation: 'fadeIn 0.5s ease-out' }}>
       
-      {/* Navigation Bar */}
-      <nav id="main-nav" style={{ position: 'sticky', top: 0, zIndex: 1000, background: 'rgba(2, 11, 20, 0.85)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(0, 210, 211, 0.1)' }}>
-        <div className="logo-brand" onClick={onBack} style={{ cursor: 'pointer' }}>
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" className="logo-icon">
-            <circle cx="19" cy="19" r="18" stroke="#00d2d3" strokeWidth="1.5" fill="rgba(0,210,211,0.08)"/>
-            <path d="M7 22 Q10.5 16, 14 22 Q17.5 28, 21 22 Q24.5 16, 28 22" stroke="#00d2d3" strokeWidth="2" fill="none" strokeLinecap="round"/>
-            <path d="M7 17 Q10.5 11, 14 17 Q17.5 23, 21 17 Q24.5 11, 28 17" stroke="#00d2d3" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.5"/>
-            <circle cx="19" cy="19" r="2" fill="#00d2d3"/>
-            <line x1="19" y1="4" x2="19" y2="7" stroke="#00d2d3" strokeWidth="1.5" strokeLinecap="round"/>
-            <line x1="19" y1="31" x2="19" y2="34" stroke="#00d2d3" strokeWidth="1.5" strokeLinecap="round"/>
-            <line x1="4" y1="19" x2="7" y2="19" stroke="#00d2d3" strokeWidth="1.5" strokeLinecap="round"/>
-            <line x1="31" y1="19" x2="34" y2="19" stroke="#00d2d3" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-          <span className="logo-wordmark">
-             <span className="logo-title" style={{ color: '#ffffff' }}>TECHBRAIN</span><span className="logo-title-accent">NETWORKS</span>
-             <span className="logo-subtitle">GLOBAL TECHNOLOGY INNOVATOR</span>
-          </span>
-        </div>
-        <div className="nav-links">
-           <button onClick={onBack} className="btn" style={{ background: 'transparent', border: '1px solid rgba(0, 210, 211, 0.3)' }}>Back to OceanTech</button>
-           <a href="#contact-form" className="btn btn-primary" style={{ padding: '0.4rem 1.2rem' }}>Get in Touch</a>
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <section className="company-hero">
         <div className="hero-background-gradient"></div>
         <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', paddingTop: '6rem', paddingBottom: '4rem' }}>
+          <button className="btn back-btn-inline" onClick={onBack} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem', background: 'rgba(0,210,211,0.1)', border: '1px solid rgba(0,210,211,0.2)' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to OceanTech
+          </button>
           <div className="pill-badge" style={{ margin: '0 auto 1.5rem', display: 'inline-flex' }}>
             <span className="pulse-dot"></span>
             About Us
@@ -275,24 +258,6 @@ const CompanyAboutPage = ({ onBack }) => {
         </div>
       </section>
 
-      {/* Corporate Footer */}
-      <footer className="corporate-footer" style={{ background: '#020b14', borderTop: '1px solid rgba(0, 210, 211, 0.1)', padding: '4rem 0 2rem' }}>
-        <div className="container">
-          <div className="footer-top" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '2rem', letterSpacing: '0.2em', margin: 0 }}>TECHBRAIN NETWORKS</h2>
-          </div>
-          
-          <div className="footer-links-row" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', marginBottom: '3rem' }}>
-            {['Home', 'About', 'Services', 'Industries', 'Careers', 'Contact Us', 'Privacy', 'Terms & Conditions'].map((link, idx) => (
-              <a key={idx} href="#" style={{ color: '#B3C5D7', textDecoration: 'none', fontSize: '0.95rem', transition: 'color 0.3s' }}>{link}</a>
-            ))}
-          </div>
-
-          <div className="footer-bottom-corp" style={{ textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid rgba(255, 255, 255, 0.05)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-            <p>© {new Date().getFullYear()} Techbrain Networks. All Rights Reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

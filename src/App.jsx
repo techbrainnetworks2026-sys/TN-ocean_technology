@@ -1,33 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
 // Data
-import { products } from './data/products';
-import { faqs } from './data/faqs';
-import { productDetails } from './data/productDetails';
+import { products } from '@/data/products';
+import { faqs } from '@/data/faqs';
+import { productDetails } from '@/data/productDetails';
 
 // Layout
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import ChatBox from './components/layout/ChatBox';
-
-// UI
-import ScrollProgress from './components/ui/ScrollProgress';
-import BackToTop from './components/ui/BackToTop';
-
-// Home Sections
-import Hero from './components/home/Hero';
-import TrustBadges from './components/home/TrustBadges';
-import AboutSection from './components/home/AboutSection';
-import Workflow from './components/home/Workflow';
-import ProductSection from './components/home/ProductSection';
-import Contact from './components/home/Contact';
-import FAQ from './components/home/FAQ';
-import Testimonials from './components/home/Testimonials';
+import MainLayout from '@/components/layout/MainLayout';
+import Hero from '@/components/home/Hero';
+import TrustBadges from '@/components/home/TrustBadges';
+import AboutSection from '@/components/home/AboutSection';
+import Workflow from '@/components/home/Workflow';
+import ProductSection from '@/components/home/ProductSection';
+import Contact from '@/components/home/Contact';
+import FAQ from '@/components/home/FAQ';
+import Testimonials from '@/components/home/Testimonials';
 
 // Pages
-import AboutPage from './components/pages/AboutPage';
-import CompanyAboutPage from './components/pages/CompanyAboutPage';
-import ProductPage from './components/pages/ProductPage';
+import AboutPage from '@/components/pages/AboutPage';
+import CompanyAboutPage from '@/components/pages/CompanyAboutPage';
+import ProductPage from '@/components/pages/ProductPage';
 
 function App() {
   const [view, setView] = useState('home'); // 'home', 'details', 'about', 'companyAbout'
@@ -77,64 +69,57 @@ function App() {
     }
   };
 
-  // View Routing
-  if (view === 'about') {
-    return <AboutPage onBack={handleHomeClick} />;
-  }
-
-  if (view === 'companyAbout') {
-    return <CompanyAboutPage onBack={handleHomeClick} />;
-  }
-
-  if (view === 'details' && selectedProduct) {
-    return (
-      <ProductPage 
-        product={selectedProduct} 
-        details={productDetails[selectedProduct.id]} 
-        onBack={handleHomeClick} 
-      />
-    );
-  }
+  // Content Selection
+  const renderContent = () => {
+    switch (view) {
+      case 'about':
+        return <AboutPage onBack={handleHomeClick} />;
+      case 'companyAbout':
+        return <CompanyAboutPage onBack={handleHomeClick} />;
+      case 'details':
+        if (selectedProduct) {
+          return (
+            <ProductPage 
+              product={selectedProduct} 
+              details={productDetails[selectedProduct.id]} 
+              onBack={handleHomeClick} 
+            />
+          );
+        }
+        return null;
+      default:
+        return (
+          <>
+            <Hero 
+              onExplore={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })} 
+              onCompanyAbout={() => setView('companyAbout')} 
+            />
+            <TrustBadges />
+            <AboutSection onCompanyAbout={() => setView('companyAbout')} />
+            <Workflow />
+            <ProductSection products={products} onProductClick={handleProductClick} />
+            <Contact />
+            <FAQ faqs={faqs} />
+            <Testimonials />
+          </>
+        );
+    }
+  };
 
   return (
-    <>
-      <ScrollProgress progress={scrollProgress} />
-      <BackToTop show={showBackToTop} />
-
-      <Navbar 
-        onHome={handleHomeClick} 
-        onAbout={() => setView('about')} 
-        isDarkMode={isDarkMode} 
-        toggleTheme={() => setIsDarkMode(!isDarkMode)} 
-      />
-
-      <Hero 
-        onExplore={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })} 
-        onCompanyAbout={() => setView('companyAbout')} 
-      />
-
-      <TrustBadges />
-
-      <AboutSection onCompanyAbout={() => setView('companyAbout')} />
-
-      <Workflow />
-
-      <ProductSection 
-        products={products} 
-        onProductClick={handleProductClick} 
-      />
-
-      <Contact />
-
-      <FAQ faqs={faqs} />
-
-      <Testimonials />
-
-      <Footer onHome={handleHomeClick} />
-
-      <ChatBox />
-    </>
+    <MainLayout
+      onHome={handleHomeClick}
+      onAbout={() => setView('about')}
+      isDarkMode={isDarkMode}
+      toggleTheme={() => setIsDarkMode(!isDarkMode)}
+      scrollProgress={scrollProgress}
+      showBackToTop={showBackToTop}
+    >
+      {renderContent()}
+    </MainLayout>
   );
 }
+
+export default App;
 
 export default App;
