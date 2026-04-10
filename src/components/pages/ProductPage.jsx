@@ -47,7 +47,7 @@ const ProductPage = ({ product, details, onBack }) => {
             <h1>{product.title}</h1>
             <p className="hero-description">{product.desc}</p>
             <div className="hero-cta-group">
-              <a href="mailto:contact@oceantech.io" className="btn btn-primary">Request a Demo</a>
+              {/* <a href="mailto:contact@oceantech.io" className="btn btn-primary">Request a Demo</a> */}
               <a href="#pp-specs" className="btn">View Technical Specs</a>
             </div>
           </div>
@@ -222,7 +222,7 @@ const ProductPage = ({ product, details, onBack }) => {
               {details.conclusion || `${product.title} is a mission-critical platform that empowers researchers, governments, and industry professionals to make precise, data-driven decisions at scale. Built for the complexity of the ocean environment — and the ambition of those who work within it.`}
             </p>
             <div className="conclusion-cta">
-              <a href="mailto:contact@oceantech.io" className="btn btn-primary">Request a Demo</a>
+              {/* <a href="mailto:contact@oceantech.io" className="btn btn-primary">Request a Demo</a> */}
               <button className="btn" onClick={onBack}>Explore Other Solutions</button>
             </div>
           </div>
