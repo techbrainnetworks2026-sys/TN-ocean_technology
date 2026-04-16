@@ -164,7 +164,7 @@ const AboutPage = ({ onBack }) => {
           </div>
         </div>
       </section>
-
+    </div>
   );
 };
 
